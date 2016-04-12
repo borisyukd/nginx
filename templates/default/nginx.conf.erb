@@ -1,3 +1,6 @@
+<% node['nginx']['load_modules'].each do |name| %>
+load_module <%= name %>;
+<% end -%>
 user <%= node['nginx']['user'] %><% if node['nginx']['user'] != node['nginx']['group'] %> <%= node['nginx']['group'] %><% end %>;
 worker_processes  <%= node['nginx']['worker_processes'] %>;
 <% if node['nginx']['daemon_disable'] -%>
