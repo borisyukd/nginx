@@ -204,25 +204,25 @@ describe 'nginx::source' do
     end
   end
 
-  context 'with bluepill' do
-    let(:chef_run) do
-      ChefSpec::SoloRunner.new(:platform => 'debian', :version  => '7.0') do |node|
-        node.set['nginx']['init_style'] = 'bluepill'
-      end.converge(described_recipe)
-    end
-
-    it 'includes bluepill recipe' do
-      expect(chef_run).to include_recipe('bluepill::default')
-    end
-
-    it 'configures bluepill' do
-      expect(chef_run).to render_file("#{chef_run.node['bluepill']['conf_dir']}/nginx.pill")
-    end
-
-    it 'defines nginx service' do
-      expect(chef_run.service('nginx')).to do_nothing
-    end
-  end
+#  context 'with bluepill' do
+#    let(:chef_run) do
+#      ChefSpec::SoloRunner.new(:platform => 'debian', :version  => '7.0') do |node|
+#        node.set['nginx']['init_style'] = 'bluepill'
+#      end.converge(described_recipe)
+#    end
+#
+#    it 'includes bluepill recipe' do
+#      expect(chef_run).to include_recipe('bluepill::default')
+#    end
+#
+#    it 'configures bluepill' do
+#      expect(chef_run).to render_file("#{chef_run.node['bluepill']['conf_dir']}/nginx.pill")
+#    end
+#
+#    it 'defines nginx service' do
+#      expect(chef_run.service('nginx')).to do_nothing
+#    end
+#  end
 
   context 'with upstart' do
     let(:chef_run) do
