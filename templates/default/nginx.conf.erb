@@ -104,3 +104,8 @@ http {
   include <%= node['nginx']['dir'] %>/conf.d/*.conf;
   include <%= node['nginx']['dir'] %>/sites-enabled/*;
 }
+<% if node['nginx']['stream_enabled'] -%>
+stream {
+  include <%= node['nginx']['dir'] %>/conf.d/*.config;
+}
+<% end %>
